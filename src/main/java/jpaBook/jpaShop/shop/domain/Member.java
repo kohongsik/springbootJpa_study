@@ -30,9 +30,6 @@ public class Member {
     private List<Order> orders = new ArrayList<>();
 
     public void addOrder (Order order) {
-        if (this.orders == null) {
-            this.orders = new ArrayList<>();
-        }
         this.orders.add(order);
         order.setMember(this);
     }

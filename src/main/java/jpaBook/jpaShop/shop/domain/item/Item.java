@@ -19,7 +19,6 @@ public abstract class Item {
 
     @Column(name="item_name")
     private String name;
-    @Column(name="stock_quantity")
     private int stockQuantity;
 
     @ManyToMany(mappedBy = "items")
