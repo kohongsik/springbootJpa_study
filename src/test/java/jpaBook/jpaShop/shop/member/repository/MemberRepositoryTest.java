@@ -21,14 +21,15 @@ class MemberRepositoryTest {
     public void testMember() throws Exception {
         // given
         Member member = new Member();
-        member.setUserName("memberA");
+        member.setName("memberA");
+        Member member1 = Member.builder().build();
         // when
         Long id = memberRepository.save(member);
         Member findMember = memberRepository.find(id);
 
         // then
         Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
-        Assertions.assertThat(findMember.getUserName()).isEqualTo(member.getUserName());
+        Assertions.assertThat(findMember.getName()).isEqualTo(member.getName());
         Assertions.assertThat(findMember).isEqualTo(member); // == 비교. 같은 영속성 컨택스트 에서 조회하기때문에 같음
     }
 }

@@ -22,6 +22,7 @@ public abstract class Item {
     private int stockQuantity;
 
     @ManyToMany(mappedBy = "items")
+    @Builder.Default
     private List<Category> categories = new ArrayList<>();
 
 }

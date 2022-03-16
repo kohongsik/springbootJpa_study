@@ -11,7 +11,6 @@ import javax.persistence.PersistenceContext;
 public class MemberRepository {
     @PersistenceContext // spring boot에서 엔티티 펙토리 등록 후, 엔티티 메니저 자동 주입
     private EntityManager em;
-
     public Long save(Member member) {
         em.persist(member);
         return member.getId();

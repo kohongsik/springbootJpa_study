@@ -29,6 +29,7 @@ public class Order {
     private LocalDateTime orderDate;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @Builder.Default
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @Column(name = "status")
