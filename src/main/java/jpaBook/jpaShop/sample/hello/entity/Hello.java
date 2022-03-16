@@ -1,4 +1,4 @@
-package jpaBook.jpaShop.Hello.entity;
+package jpaBook.jpaShop.sample.hello.entity;
 
 import lombok.*;
 
