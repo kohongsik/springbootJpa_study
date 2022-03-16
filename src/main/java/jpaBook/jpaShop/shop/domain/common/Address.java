@@ -1,4 +1,4 @@
-package jpaBook.jpaShop.shop.common;
+package jpaBook.jpaShop.shop.domain.common;
 
 import lombok.*;
 

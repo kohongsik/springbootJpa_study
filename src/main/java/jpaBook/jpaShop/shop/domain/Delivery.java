@@ -1,8 +1,7 @@
 package jpaBook.jpaShop.shop.domain;
 
-import jpaBook.jpaShop.shop.common.Address;
+import jpaBook.jpaShop.shop.domain.common.Address;
 import lombok.*;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 

@@ -17,7 +17,7 @@ class MemberRepositoryTest {
 
     @Test
     @Transactional // test에 트렌젝션이 있으면 롤벡을 반환
-    @Rollback(false) // rollback false로 넣으면 트렌젝션 커밋 수행.
+    // @Rollback(false) // rollback false로 넣으면 트렌젝션 커밋 수행.
     public void testMember() throws Exception {
         // given
         Member member = new Member();
@@ -25,7 +25,7 @@ class MemberRepositoryTest {
         Member member1 = Member.builder().build();
         // when
         Long id = memberRepository.save(member);
-        Member findMember = memberRepository.find(id);
+        Member findMember = memberRepository.findOne(id);
 
         // then
         Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
