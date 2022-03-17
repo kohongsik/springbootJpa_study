@@ -23,7 +23,6 @@ public abstract class Item {
     private int stockQuantity;
 
     @ManyToMany(mappedBy = "items")
-    @Builder.Default
     private List<Category> categories = new ArrayList<>();
 
     // biz logic <- 가지고 있는 객체안에 비즈니스 메서드를 서술하는게 좋음
