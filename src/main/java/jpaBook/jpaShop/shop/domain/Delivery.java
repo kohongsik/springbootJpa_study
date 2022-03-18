@@ -18,9 +18,15 @@ public class Delivery {
     @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
     private Order order;
 
+    @Setter(AccessLevel.NONE)
     private Address address;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "delivery_status")
     private DeliveryStatus status;
+
+    public void setAddress (Address address) {
+        // 러퍼런스 새로 할당.
+        this.address = new Address(address.getCity(), address.getCity(), address.getZipcode());
+    }
 }
