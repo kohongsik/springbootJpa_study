@@ -16,7 +16,12 @@ public class ItemRepository {
         if (item.getId() == null) {
             em.persist(item);
         } else {
-            em.merge(item); // update 비슷한것.. / update는 아님
+            Item ret = em.merge(item); // update 비슷한것.. / update는 아님
+            // item : paramter, merge될 인자
+            // ret : 병함 후, 영속선 컨텍스트에서 가져오는 엔티티
+            // 모든 필드를 병합하기떄문에 사이드 이펙트가 발생하거나 취약점이 있음
+            // form 상에서 금액만 나타나면 다른필드값들이 null로 될 수 가 있음
+            // 비추...
         }
         return item.getId();
     }
