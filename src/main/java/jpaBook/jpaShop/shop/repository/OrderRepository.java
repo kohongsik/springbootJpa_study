@@ -33,15 +33,15 @@ public class OrderRepository {
         }
         if (!StringUtils.isEmpty(orderSearch.getMemberName())) {
             query = isFirstCondition
-                    ? query + " and m.name = :name"
-                    : query + " where m.name = :name";
+                    ? query + " and m.name like :name"
+                    : query + " where m.name like :name";
         }
         TypedQuery<Order> typedQuery = em.createQuery(query, Order.class).setMaxResults(1000);
         if (orderSearch.getOrderStatus() != null) {
             typedQuery.setParameter("status", orderSearch.getOrderStatus());
         }
         if (!StringUtils.isEmpty(orderSearch.getMemberName())) {
-            typedQuery.setParameter("name", orderSearch.getMemberName());
+            typedQuery.setParameter("name", "%" + orderSearch.getMemberName() + "%");
         }
         return typedQuery.getResultList();
     }

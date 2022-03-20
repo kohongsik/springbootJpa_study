@@ -34,19 +34,7 @@ public class OrderService {
         OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), count);
 
         // 주문 생성
-        Order order = Order.createOrder(member,
-
-
-
-
-
-
-
-
-
-
-
-                delivery, orderItem);
+        Order order = Order.createOrder(member,delivery, orderItem);
         // notify : cascade 범위 설정은 라이프사이클 상에서 동일하게 관리하면서 다른곳에서 참조가 안일어날때 번위 정도 ?
         return orderRepository.save(order); // cascate 옵션으로 인하여 member, order 자동 생성/업데이트
     }
@@ -59,7 +47,7 @@ public class OrderService {
     }
     // 검색
     public List<Order> findOrders (OrderSearch orderSearch) {
-        return null;
+        return orderRepository.findAllByString(orderSearch);
     }
 
     public List<Order> findAllByString (OrderSearch orderSearch) {
