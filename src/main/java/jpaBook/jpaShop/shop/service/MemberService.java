@@ -43,6 +43,7 @@ public class MemberService {
         return member.getId();
     }
 
+
     private void validateDuplicateMember(Member member) {
         //EXCEPTION
         List<Member> findMembers = memberRepository.findByName(member.getName());
@@ -64,5 +65,10 @@ public class MemberService {
     @Transactional(readOnly = true)
     public Member findMember (Long memberId) {
         return memberRepository.findOne(memberId);
+    }
+
+    public void update(Long id, String name) {
+        Member member = memberRepository.findOne(id);
+        member.setName(name);
     }
 }

@@ -1,9 +1,11 @@
 package jpaBook.jpaShop.shop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jpaBook.jpaShop.shop.domain.common.Address;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,7 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
+    @NotEmpty
     @Column(name="member_name")
     private String name;
 

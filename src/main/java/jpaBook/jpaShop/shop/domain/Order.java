@@ -1,5 +1,6 @@
 package jpaBook.jpaShop.shop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 
@@ -24,12 +25,14 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="member_id")
     @Setter(AccessLevel.NONE)
+    @JsonIgnore
     private Member member;
 
     private LocalDateTime orderDate;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     @Builder.Default
+    @JsonIgnore
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @Column(name = "status")
@@ -39,6 +42,7 @@ public class Order {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id")
     @Setter(AccessLevel.NONE)
+    @JsonIgnore
     private Delivery delivery;
 
     // 연관관계 편의 메서드

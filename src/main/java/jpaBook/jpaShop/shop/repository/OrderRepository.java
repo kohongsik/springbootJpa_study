@@ -25,7 +25,7 @@ public class OrderRepository {
     }
 
     public List<Order> findAllByString (OrderSearch orderSearch) {
-        String query = "select o from Order o join o.member m";
+        String query = "select o from Order o join o.member m join fetch o.orderItems";
         boolean isFirstCondition = false;
         if (orderSearch.getOrderStatus() != null) {
             query = query + " where o.status = :status";
@@ -36,7 +36,7 @@ public class OrderRepository {
                     ? query + " and m.name like :name"
                     : query + " where m.name like :name";
         }
-        TypedQuery<Order> typedQuery = em.createQuery(query, Order.class).setMaxResults(1000);
+        TypedQuery<Order> typedQuery = em.createQuery(query, Order.class);
         if (orderSearch.getOrderStatus() != null) {
             typedQuery.setParameter("status", orderSearch.getOrderStatus());
         }

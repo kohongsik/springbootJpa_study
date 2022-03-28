@@ -1,5 +1,6 @@
 package jpaBook.jpaShop.shop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jpaBook.jpaShop.shop.domain.item.Item;
 import lombok.*;
 
