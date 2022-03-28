@@ -2,6 +2,7 @@ package jpaBook.jpaShop.shop.repository;
 
 import jpaBook.jpaShop.shop.domain.Order;
 import jpaBook.jpaShop.shop.domain.OrderSearch;
+import jpaBook.jpaShop.shop.repository.order.simpleQuery.OrderSimpleQueryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.thymeleaf.util.StringUtils;
@@ -14,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderRepository {
     private final EntityManager em;
-
+    private final OrderSimpleQueryRepository orderSimpleQueryRepository;
     public Long save (Order order) {
         em.persist(order);
         return order.getId();
@@ -44,6 +45,18 @@ public class OrderRepository {
             typedQuery.setParameter("name", "%" + orderSearch.getMemberName() + "%");
         }
         return typedQuery.getResultList();
+    }
+
+    public List<OrderSimpleQueryDto> findAllByStringDto(OrderSearch orderSearch) {
+        // 생성자에 엔티티를 넣을 수 없음 -> jpql상 엔티티는 실별자 값으로 치환됨
+        return orderSimpleQueryRepository.findAllByStringDto(orderSearch);
+    }
+
+    public List<Order> findAllByStringWithMemberDelivery(OrderSearch orderSearch) {
+        String query = "select o from Order o " +
+                "join fetch o.member " +
+                "join fetch o.delivery";
+        return em.createQuery(query, Order.class).getResultList();
     }
 /*
     public List<Order> findAll (OrderSearch orderSearch) {

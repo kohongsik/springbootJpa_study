@@ -5,6 +5,7 @@ import jpaBook.jpaShop.shop.domain.OrderSearch;
 import jpaBook.jpaShop.shop.domain.OrderStatus;
 import jpaBook.jpaShop.shop.domain.common.Address;
 import jpaBook.jpaShop.shop.repository.OrderRepository;
+import jpaBook.jpaShop.shop.repository.OrderSimpleQueryDto;
 import jpaBook.jpaShop.shop.utils.ApiUtils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -43,6 +44,18 @@ public class OrderSimpleApiController {
         List<Order> orders = orderRepository.findAllByString(new OrderSearch());
         List<SimpleOrderDto> simpleOrderDtos = orders.stream().map(SimpleOrderDto::new).collect(Collectors.toList());
         return success(simpleOrderDtos);
+    }
+    @GetMapping(value = "/api/v3/simple-orders")
+    public ResponseApiEntity<List<SimpleOrderDto>> orderV3 () {
+        List<Order> orders = orderRepository.findAllByStringWithMemberDelivery(new OrderSearch());
+        List<SimpleOrderDto> simpleOrderDtos = orders.stream().map(SimpleOrderDto::new).collect(Collectors.toList());
+        return success(simpleOrderDtos);
+    }
+
+    @GetMapping(value = "/api/v4/simple-orders")
+    public ResponseApiEntity<List<OrderSimpleQueryDto>> orderV4 () {
+        List<OrderSimpleQueryDto> orders = orderRepository.findAllByStringDto(new OrderSearch());
+        return success(orders);
     }
     @Data
     static class SimpleOrderDto {

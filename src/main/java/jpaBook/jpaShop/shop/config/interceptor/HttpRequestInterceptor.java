@@ -24,7 +24,7 @@ public class HttpRequestInterceptor implements AsyncHandlerInterceptor {
         String header = request.getHeader("X-AUTH-NAME");
         if (StringUtils.isEmpty(header)) {
             log.debug("header auth info is empty...");
-            // throw new Exception("권한이 없습니다.. 하하.");
+             throw new Exception("권한이 없습니다.. 하하.");
         } else {
             log.debug("header info header : " + header);
         }
